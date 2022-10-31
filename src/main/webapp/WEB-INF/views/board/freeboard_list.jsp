@@ -8,7 +8,6 @@
 		<div class="board-title-free">
 			<h1>자유게시판</h1>
 		</div>
-
 		<%-- 총게시물 수 
 				<tr>
 					<td align="left">게시물 수 : ${totalCount}<strong>개</strong>
@@ -43,13 +42,16 @@
 		</tr>
 
 		<c:if test="${!empty list}">
-			<c:forEach var="b" items="${list}">
+			<c:forEach var="board" items="${list}">
 				<tr>
-					<td class="cont-num">${b.board_no}</td>
-					<td class="cont-cont"><a href="/freeboard_cont?board_no=${b.board_no}&page=${page}">${b.board_title}</a></td>
-					<td class="cont-writer">${b.board_writer}</td>
-					<td class="cont-date">${b.board_date}</td>
-					<td class="cont-view">${b.board_hit}</td>
+					<td class="cont-num">${board.board_no}</td>
+					<td class="cont-cont"><a href="/freeboard_cont?board_no=${board.board_no}&page=${page}">${board.board_title}
+					<c:if test="${b.replycnt != 0}">
+				    <%--3칸의 빈공백 --%> (${b.replycnt})
+				   </c:if></a></td>
+					<td class="cont-writer">${board.board_writer}</td>
+					<td class="cont-date">${board.board_date}</td>
+					<td class="cont-view">${board.board_hit}</td>
 				</tr>
 			</c:forEach>
 		</c:if>
@@ -59,30 +61,29 @@
 				<th colspan="5">등록된 게시물이 없습니다.</th>
 			</tr>
 		</c:if>
-
 	</table>
 
 	<%-- 페이징 --%>
 	<div class="paging">
 	<tr>
 		<th  colspan="6"><c:if test="${page <= 1}">
-			[이전]&nbsp;
+			<%--[이전] --%>&nbsp;
 		</c:if> <c:if test="${page > 1}">
-				<a href="/freeboard_list?page=${page-1}">[이전]</a>&nbsp;
+				<a href="/freeboard_list?page=${page-1}">◀이전</a>&nbsp;
 		</c:if> <%-- 현재 쪽번호 출력 --%> <c:forEach var="a" begin="${startpage}"
 				end="${endpage}" step="1">
 				<c:if test="${a == page}">
 					<%-- 현재 쪽번호가 선택된 경우 --%>
-				<${a}>
+				${a}&nbsp;&nbsp;
 			</c:if>
 				<c:if test="${a != page}">
 					<%-- 현재 쪽번호가 선택되지 않은 경우 --%>
-					<a href="/freeboard_list?page=${a}">[${a}]</a>&nbsp;
+					<a href="/freeboard_list?page=${a}">${a}</a>&nbsp;&nbsp;
 			</c:if>
 			</c:forEach> <c:if test="${page >= maxpage}">
-			다음
+			<%--[다음] --%>
 		</c:if> <c:if test="${page<maxpage}">
-				<a href="/freeboard_list?page=${page+1}">[다음]</a>
+				<a href="/freeboard_list?page=${page+1}">다음▶</a>
 			</c:if></th>
 	</tr>
 	</div>
@@ -98,6 +99,7 @@
 			alert('처리가 완료 되었습니다.');
 		}
 	</script>
+	
 </div>
 </body>
 </html>

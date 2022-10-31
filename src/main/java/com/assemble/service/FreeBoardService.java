@@ -3,6 +3,7 @@ package com.assemble.service;
 import java.util.List;
 
 import com.assemble.vo.BoardVO;
+import com.assemble.vo.ReplyVO;
 
 public interface FreeBoardService {
 
@@ -19,6 +20,7 @@ public interface FreeBoardService {
 	void editBoard(BoardVO eb);
 
 	void delFreeBoard(int board_no);
+
 
 	
 

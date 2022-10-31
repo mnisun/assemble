@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/index/main.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/thema/thema.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/login&join/join.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/insert/webtooninsert.css">
 <script type="text/javascript" src="/resources/js/index/jquery.1.12.4.js"></script>
 <script type="text/javascript"
 	src="/resources/plugins/bxslider/js/jquery.bxslider.js"></script>
@@ -55,14 +56,14 @@
 		<header>
 			<div class="header-div">
 				<h2>
-					<a href="../index_1.jsp"><img src="../images/index/logo.png"
+					<a href="main"><img src="../images/index/logo.png"
 						width="150" height="65" alt="웹툰리뷰"></a>
 				</h2>
 				<div class="selector-menu">
-					<a href="../tagpage/tag.jsp"><i class="fa-solid fa-play"></i><span>태그검색</span></a> <a
-						href="../thema/thema.jsp"><i class="fa-solid fa-play"></i><span>테마추천</span></a> <a
-						href="../FAQ/FAQ.jsp"><i class="fa-solid fa-play"></i><span>FAQ</span></a> <a
-						href="../board/freeboard.jsp"><i class="fa-solid fa-play"></i><span>사사게</span></a>
+					<a href="tagpage_tag"><i class="fa-solid fa-play"></i><span>태그검색</span></a> 
+					<a href="thema/thema.jsp"><i class="fa-solid fa-play"></i><span>테마검색</span></a> 
+					<a href="FAQ/FAQ.jsp"><i class="fa-solid fa-play"></i><span>FAQ</span></a> 
+					<a href="freeboard_list"><i class="fa-solid fa-play"></i><span>사사게</span></a>
 				</div>
 				<div class="login-join">
 					<a href="../Login/login.jsp" class="login">로그인  </a>  |  <a href="../join/join.jsp" class="join">  회원가입</a>

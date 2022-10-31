@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+<meta name="_csrf_header" content="${_csrf.headerName}">
+<meta name="_csrf" content="${_csrf.token}">
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://kit.fontawesome.com/537cf02f0b.js" crossorigin="anonymous"></script>
+<script
+	 src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/537cf02f0b.js"
+	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <meta http-equiv="Cache-Control" content="no-cache" />
@@ -13,8 +20,10 @@
 <title></title>
 <link rel="stylesheet"
 	href="//http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/index/main.css">
-<script type="text/javascript" src="/resources/js/index/jquery.1.12.4.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/index/main.css">
+<script type="text/javascript"
+	src="/resources/js/index/jquery.1.12.4.js"></script>
 <script type="text/javascript"
 	src="/resources/plugins/bxslider/js/jquery.bxslider.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -22,53 +31,11 @@
 <script>
 	$(document).ready(function() {
 		$('.slider1').bxSlider({
-			controls:false,
-			pager:false,
-			auto:true
-		});
-		/*
-		$('.favorite-content-btn1').click(function() {
-			$('.favorite-container').css('transform', 'translate(0)');
+			controls : false,
+			pager : false,
+			auto : true
 		});
 
-		$('.favorite-content-btn2').click(function() {
-			$('.favorite-container').css('transform', 'translate(-100vw)');
-		});
-
-		$('.favorite-content-btn3').click(function() {
-			$('.favorite-container').css('transform', 'translate(-200vw)');
-		});
-
-		$('.favorite-content-btn4').click(function() {
-			$('.favorite-container').css('transform', 'translate(-300vw)');
-		});
-
-		$('.favorite-content-btn5').click(function() {
-			$('.favorite-container').css('transform', 'translate(-400vw)');
-		});
-
-		
-
-		$('.love-content-btn1').click(function() {
-			$('.love-container').css('transform', 'translate(0)');
-		});
-
-		$('.love-content-btn2').click(function() {
-			$('.love-container').css('transform', 'translate(-100vw)');
-		});
-
-		$('.love-content-btn3').click(function() {
-			$('.love-container').css('transform', 'translate(-200vw)');
-		});
-
-		$('.love-content-btn4').click(function() {
-			$('.love-container').css('transform', 'translate(-300vw)');
-		});
-
-		$('.love-content-btn5').click(function() {
-			$('.love-container').css('transform', 'translate(-400vw)');
-		});
-		*/
 		$('.header-plus-btn').click(function() {
 			$('.header-content').css('position', 'relative');
 			var one = $('.header-content').css('height');
@@ -79,7 +46,7 @@
 				$('.header-content').css('height', 0);
 			}
 		});
-		
+
 		$('.introduce-completion-content').bxSlider();
 		$('.introduce-weekbest-content').bxSlider();
 		$('.introduce-love-content').bxSlider();
@@ -93,19 +60,33 @@
 			<div class="header-div">
 				<h2>
 					<a href="#"><img src="./images/index/logo.png" width="150"
-					height="65" alt="웹툰리뷰"></a>
+						height="65" alt="웹툰리뷰"></a>
 				</h2>
 				<div class="selector-menu">
-					<a href="tagpage/tag.jsp"><i class="fa-solid fa-play"></i><span>태그검색</span></a> 
-					<a href="thema/thema.jsp"><i class="fa-solid fa-play"></i><span>테마검색</span></a> 
-					<a href="FAQ/FAQ.jsp"><i class="fa-solid fa-play"></i><span>FAQ</span></a> 
+					<a href="tagpage_tag"><i class="fa-solid fa-play"></i><span>태그검색</span></a>
+					<a href="thema/thema.jsp"><i class="fa-solid fa-play"></i><span>테마검색</span></a>
+					<a href="FAQ/FAQ.jsp"><i class="fa-solid fa-play"></i><span>FAQ</span></a>
 					<a href="freeboard_list"><i class="fa-solid fa-play"></i><span>사사게</span></a>
 				</div>
 				<button class="header-plus-btn" name="header-plus-btn">
-						<i class="fa-solid fa-plus"></i>
+					<i class="fa-solid fa-plus"></i>
 				</button>
 				<div class="login-join">
-					<a href="Login/login.jsp" class="login">로그인  </a>  |  <a href="join/join.jsp" class="join">  회원가입</a>
+
+					<sec:authorize access="isAnonymous()">
+						<a href="users_login" class="login">로그인 </a> | <a href="join"
+							class="join"> 회원가입</a>
+					</sec:authorize>
+
+					<sec:authorize access="hasAnyRole('ROLE_USER')">
+						<a href="users_login" class="login">마이페이지 </a> |
+						<form method="post" action="user_logout">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+							<input type="submit" value="로그아웃" />
+						</form>
+					</sec:authorize>
+
 				</div>
 				<div style="clear: both;"></div>
 
@@ -154,28 +135,33 @@
 		<div class="thumbnail-slider">
 			<div class="slider1">
 				<div class="thumbnail-inner" style="text-align: center;">
-					<div  style="text-align: center;">
-						<a href="#"><img src="/resources/images/index/header-Thumbnail/이름모름.jpg"></a>
+					<div style="text-align: center;">
+						<a href="#"><img
+							src="/resources/images/index/header-Thumbnail/이름모름.jpg"></a>
 					</div>
 				</div>
 				<div class="thumbnail-inner">
-					<div  style="text-align: center;">
-						<a href="#"><img src="/resources/images/index/header-Thumbnail/신의탑.jpg"></a>
-					</div>
-				</div>
-				<div class="thumbnail-inner">
-					<div>
-						<a href="#"><img src="/resources/images/index/header-Thumbnail/main_image_01.jpg"></a>
-					</div>
-				</div>
-				<div class="thumbnail-inner">
-					<div>
-						<a href="#"><img src="/resources/images/index/header-Thumbnail/main_image_02.jpg"></a>
+					<div style="text-align: center;">
+						<a href="#"><img
+							src="/resources/images/index/header-Thumbnail/신의탑.jpg"></a>
 					</div>
 				</div>
 				<div class="thumbnail-inner">
 					<div>
-						<a href="#"><img src="/resources/images/index/header-Thumbnail/main_image_03.jpg" ></a>
+						<a href="#"><img
+							src="/resources/images/index/header-Thumbnail/main_image_01.jpg"></a>
+					</div>
+				</div>
+				<div class="thumbnail-inner">
+					<div>
+						<a href="#"><img
+							src="/resources/images/index/header-Thumbnail/main_image_02.jpg"></a>
+					</div>
+				</div>
+				<div class="thumbnail-inner">
+					<div>
+						<a href="#"><img
+							src="/resources/images/index/header-Thumbnail/main_image_03.jpg"></a>
 					</div>
 				</div>
 			</div>
@@ -191,12 +177,12 @@
 			<form>
 				<input type="text"
 					style="width: 600px; height: 40px; font-size: 30px; font-size: 15px;"
-					placeholder="웹툰 검색"> 
-					<a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+					placeholder="웹툰 검색"> <a href="#"><i
+					class="fa-solid fa-magnifying-glass"></i></a>
 			</form>
 		</div>
 		<!-- ------------------------------------------------------------------ -->
-	
+
 		<div class="monthbest">
 			<span>이번달 핫한 웹툰</span>
 			<div class="introduce-monthbest-content">
@@ -208,7 +194,8 @@
 						<a href="#"><img src="/resources/images/Thumbnail/고삼무쌍.jpg"></a>
 					</div>
 					<div>
-						<a href="#"><img src="/resources/images/Thumbnail/내남편과결혼해줘.jpg"></a>
+						<a href="#"><img
+							src="/resources/images/Thumbnail/내남편과결혼해줘.jpg"></a>
 					</div>
 					<div>
 						<a href="#"><img src="/resources/images/Thumbnail/김부장.jpg"></a>
@@ -303,7 +290,7 @@
 			</div>
 		</div>
 		<!-- ------------------------------------------------------------------ -->
-		
+
 		<div class="love">
 			<span>러브 웹툰</span>
 			<div class="introduce-love-content">
@@ -410,7 +397,7 @@
 			</div>
 		</div>
 		<!-- ------------------------------------------------------------------ -->
-		
+
 		<div class="completion">
 			<span>완결 웹툰</span>
 			<div class="introduce-completion-content">
@@ -623,43 +610,46 @@
 			</div>
 		</div>
 		<!-- ------------------------------------------------------------------ -->
-		
+
 		<!-- <div class="tour-item">
-	<div class="tour-title">Raft the Grand Cayon</div>
-		<div class="tour-content">
-			<p>
-			
-			</p>
-		</div>
-	</div>-->
+   <div class="tour-title">Raft the Grand Cayon</div>
+      <div class="tour-content">
+         <p>
+         
+         </p>
+      </div>
+   </div>-->
 		<!-- ------------------------------------------------------------------ -->
 		<div style="clear: both;"></div>
 		<div class="community-write">
-			<a href="#"><span class="bottom-community">다른 사용자들의 인생 웹툰 추천</span></a>
-			<a href="#"><span class="bottom-write">나만의 인생 웹툰 추천</span></a>
+			<a href="#"><span class="bottom-community">다른 사용자들의 인생 웹툰
+					추천</span></a> <a href="#"><span class="bottom-write">나만의 인생 웹툰 추천</span></a>
 		</div>
 		<!-- ------------------------------------------------------------------ -->
 		<footer class="footer">
 			<div class="footer-inner">
-				<div id = "footermenu">
+				<div id="footermenu">
 					<ul>
-						<li><a href = "#">회사소개</a></li>
-						<li><a href = "#">광고/제휴문의</a></li>
-						<li><a href = "#">이용약관</a></li>
-						<li><a href = "#">개인정보 처리방침</a></li>
-						<li><a href = "#">청소년보호정책</a></li>
-						<li><a href = "#">법적고지</a></li>
-						<li><a href = "#">이메일무단수집거부</a></li>
-						<li><a href = "#">고객센터</a></li>
+						<li><a href="#">회사소개</a></li>
+						<li><a href="#">광고/제휴문의</a></li>
+						<li><a href="#">이용약관</a></li>
+						<li><a href="#">개인정보 처리방침</a></li>
+						<li><a href="#">청소년보호정책</a></li>
+						<li><a href="#">법적고지</a></li>
+						<li><a href="#">이메일무단수집거부</a></li>
+						<li><a href="#">고객센터</a></li>
 					</ul>
 					<br>
 				</div>
-				<div id = "compony-introduce">대표이사 : 4조 | 사업자정보확인 개인정보관리 책임자 : 선지원 사업자등록번호 : 000-00-00000 통신판매신고번호 : 강남 제 000000호<br>
-본점 : 서울특별시 강남구 kgitbank 사업장 : 서울특별시 강남구 kgitbank <br>
-고객센터 : 00000-0000, sunjw222@naver.com 이용자상담실 (문의 및 이용자 의견) : 000-000-0000<br>
-Copyright (C) sun All Rights Reserved.</div>
-<br>
-<img src="./images/index/logo.png" width="33" height="33" alt="logo"/>
+				<div id="compony-introduce">
+					대표이사 : 4조 | 사업자정보확인 개인정보관리 책임자 : 선지원 사업자등록번호 : 000-00-00000
+					통신판매신고번호 : 강남 제 000000호<br> 본점 : 서울특별시 강남구 kgitbank 사업장 :
+					서울특별시 강남구 kgitbank <br> 고객센터 : 00000-0000, sunjw222@naver.com
+					이용자상담실 (문의 및 이용자 의견) : 000-000-0000<br> Copyright (C) sun All
+					Rights Reserved.
+				</div>
+				<br> <img src="./images/index/logo.png" width="33" height="33"
+					alt="logo" />
 				<div class="footer-icon">
 					<a href="#"><i class="fa-brands fa-facebook"></i></a> <a href="#"><i
 						class="fa-brands fa-youtube"></i></a> <a href="#"><i

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.assemble.dao.FreeBoardDAO;
 import com.assemble.vo.BoardVO;
+import com.assemble.vo.ReplyVO;
 
 @Service
 public class FreeBoardServiceImpl implements FreeBoardService {
@@ -52,6 +53,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	public void delFreeBoard(int board_no) {
 		this.freeboardDao.delFreeBoard(board_no);
 	}
+
 
 
 

@@ -35,7 +35,6 @@
 		<input type="reset" value="취소" onclick="$('#board_writer').focus();"/>
 		<input type="button" value="목록" onclick="location='freeboard_list?page=${page}';"/>
 	</tr>
-	
 </table>
 </form>
 </body>

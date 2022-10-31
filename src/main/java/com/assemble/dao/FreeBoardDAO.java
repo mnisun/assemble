@@ -20,5 +20,7 @@ public interface FreeBoardDAO {
 
 	void delFreeBoard(int board_no);
 
+	void updateReplyCnt(int board_no, int count);
+
 
 }
