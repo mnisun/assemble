@@ -6,7 +6,10 @@ create table reply(
     board_regdate date, -- 댓글 작성일
     board_no number(38) -- board테이블의 게시판 번호값만 저장되게 주종관계 설정
 );
+alter table reply add board_reply_writer varchar(50) not null;
 
+
+select * from users
 
 -- board_no 컬럼 외래키 설정
 alter table reply add constraint reply_board_no_fk

@@ -62,4 +62,10 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
 		this.sqlSession.update("updateReplyCnt",cm);
 	}
 
+	/*아래부터 검색관련*/
+	@Override
+	public int getTotalCount(BoardVO b) {
+		return this.sqlSession.selectOne("fb_row", b);
+	} // 검색 전후 레코드 개수
+
 }

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../include/board/header.jsp"%>
 <title>자유게시판</title>
+<form method="get" action="/freeboard_list">
 <div class="all-freeboard">
 	<table class="freeboard-table">
 		<div class="board-title-free">
@@ -49,7 +50,8 @@
 					<c:if test="${b.replycnt != 0}">
 				    <%--3칸의 빈공백 --%> (${b.replycnt})
 				   </c:if></a></td>
-					<td class="cont-writer">${board.board_writer}</td>
+				    <td class="cont-writer">${board.board_writer}</td>
+					<%--<td class="cont-writer">${board.board_writer}</td> --%>
 					<td class="cont-date">${board.board_date}</td>
 					<td class="cont-view">${board.board_hit}</td>
 				</tr>
@@ -62,8 +64,61 @@
 			</tr>
 		</c:if>
 	</table>
+	
+	<%--페이징--%>
+	<div class="paging">
+	<%--검색전 페이징--%>
+	<c:if test="${(empty find_field)&&(empty find_name)}">
+		<c:if test="${page <= 1}">
+		<%--◀이전&nbsp; --%>
+		</c:if>
+		<c:if test="${page > 1}">
+		<a href="/freeboard_list?page=${page-1}">◀이전</a>&nbsp;
+		</c:if>
+		
+		<%-- 쪽번호 출력 --%>
+		<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+			<c:if test="${a==page}"><${a}></c:if>
+			
+			<c:if test="${a!=page}">
+			<a href="/freeboard_list?page=${a}">${a}</a>&nbsp;&nbsp;
+			</c:if>
+		</c:forEach>
+		
+		<c:if test="${page>=maxpage}"><%--[다음] --%></c:if>
+		<c:if test="${page<maxpage}">
+		<a href="/freeboard_list?page=${page+1}">다음▶</a>
+		</c:if>
+	</c:if>
+	
+	<%-- 검색후 페이징 --%>
+	<c:if test="${(!empty find_field) || (!empty find_name)}">
+		<c:if test="${page <= 1}">
+		[이전]&nbsp;
+		</c:if>
+		<c:if test="${page > 1}">
+		<a href="/freeboard_list?page=${page-1}&find_field=${find_field}&find_name=${find_name}">[이전]</a>&nbsp;
+		</c:if>
+		
+		<%-- 쪽번호 출력 --%>
+		<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+			<c:if test="${a==page}"><${a}></c:if>
+			
+			<c:if test="${a!=page}">
+				<a href="/freeboard_list?page=${a}&find_field=${find_field}&find_name=${find_name}">[${a}]</a>&nbsp;
+			</c:if>
+		</c:forEach>
+		
+		<c:if test="${page>=maxpage}">[다음]</c:if>
+		<c:if test="${page<maxpage}">
+			<a href="/freeboard_list?page=${page+1}&find_field=${find_field}&find_name=${find_name}">[다음]</a>
+		</c:if>
+	</c:if>
+	
+	</div>
 
-	<%-- 페이징 --%>
+<!--  
+	<%-- 기존 페이징 --%>
 	<div class="paging">
 	<tr>
 		<th  colspan="6"><c:if test="${page <= 1}">
@@ -87,20 +142,40 @@
 			</c:if></th>
 	</tr>
 	</div>
+	-->
 
-	<div class="writebtn">
-		<button class="btn" value="글쓰기"
-			onclick="location='/freeboard_write?page=${page}';">글쓰기</button>
-	</div>
+		<div class="writebtn">
+			<input class="btn" type="button" value="글쓰기"
+				onclick="location='/freeboard_write?page=${page}';"/>
+		</div>
 
-	<script type="text/javascript">
+		<script type="text/javascript">
 		var msg = '${msg}'; 
 		if (msg == 'SUCCESS') {
 			alert('처리가 완료 되었습니다.');
 		}
 	</script>
 	
+<!-- -------------------------------------------------------------------------- -->
+	<%--검색폼 --%>
+	<div id="bFind_wrap">
+		<select name="find_field">
+			<option value="board_title"
+				<c:if test="${find_field == 'board_title'}">
+   ${'selected'}</c:if>>제목</option>
+			<option value="board_writer"
+				<c:if test="${find_field == 'board_writer'}">
+    ${'selected'}</c:if>>작성자</option>
+		</select> <input name="find_name" id="find_name" size="14" value="${find_name}" />
+		<input type="submit" value="검색" />
+	</div>
+	
 </div>
+
+</form>
+
+
+
 </body>
 </html>
 <jsp:include page="../include/footer.jsp" />

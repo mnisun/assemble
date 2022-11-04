@@ -1,6 +1,12 @@
 package com.assemble.controller;
 
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,9 +28,13 @@ public class ReplyController {
 	private ReplyService replyService;
 	// 댓글 등록
 	@PostMapping("/addreply")
-	public ResponseEntity<String> addReply(@RequestBody ReplyVO vo){
+	public ResponseEntity<String> addReply(@RequestBody ReplyVO vo, Principal principal){
 		
 		ResponseEntity<String> entity = null;
+		
+		String board_reply_writer = principal.getName(); // 여기부터 
+		System.out.println(board_reply_writer);
+		vo.setBoard_reply_writer(board_reply_writer); // 여기까지
 		
 		try {
 			this.replyService.insertReply(vo);
@@ -35,6 +45,38 @@ public class ReplyController {
 		}
 		return entity;
 	} // addReply()
+	
+//	// 댓글 등록
+//		@PostMapping("/addreply")
+//		public ResponseEntity<String> addReply(@RequestBody ReplyVO vo, HttpServletResponse response, HttpServletRequest request, Principal principal) throws Exception{
+//			
+//			ResponseEntity<String> entity = null;
+//			response.setContentType("text/html;charset=UTF-8");
+//			request.setCharacterEncoding("UTF-8");
+//			
+//			try {
+//				PrintWriter out = response.getWriter();
+//				String id = principal.getName();
+//				if(id == null) {
+//					out.println("<script>");
+//					out.println("alert('로그인이 필요한 서비스 입니다.');");
+//					out.println("location='freeboard_list';");
+//					out.println("</script>");
+//				}else {
+//					this.replyService.insertReply(vo);
+//					entity=new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+//				}
+//			}catch(Exception e) {
+//				e.printStackTrace();
+//				entity=new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+//				PrintWriter out = response.getWriter();
+//				out.println("<script>");
+//				out.println("alert('로그인이 필요한 서비스 입니다.');");
+//				out.println("location='freeboard_list';");
+//				out.println("</script>");
+//			}
+//			return entity;
+//		} // addReply()
 	
 	// 댓글 목록
 	@RequestMapping(value="/all/{board_no}",produces="application/json")

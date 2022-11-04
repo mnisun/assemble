@@ -20,6 +20,9 @@ public interface FreeBoardService {
 	void editBoard(BoardVO eb);
 
 	void delFreeBoard(int board_no);
+	
+	/*아래부터 검색관련*/
+	int getRowCount(BoardVO b);
 
 
 	

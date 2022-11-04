@@ -18,6 +18,10 @@ select * from board;
 
 select board_seq.nextval from dual;
 
+alter table board modify (board_image varchar2(300));
+
+alter table board drop column board_file;
+
 alter table board add board_writer varchar(38);
 alter table board modify board_hit default 0;
 

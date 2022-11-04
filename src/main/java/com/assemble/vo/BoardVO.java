@@ -16,6 +16,10 @@ public class BoardVO {
 	private int startrow;
 	private int endrow;
 	
+	// 검색결과와 검색어
+	private String find_field; // 검색필드
+	private String find_name; // 검색어
+	
 	public int getStartrow() {
 		return startrow;
 	}
@@ -89,6 +93,19 @@ public class BoardVO {
 	public void setBoard_writer(String board_writer) {
 		this.board_writer = board_writer;
 	}
+	public String getFind_field() {
+		return find_field;
+	}
+	public void setFind_field(String find_field) {
+		this.find_field = find_field;
+	}
+	public String getFind_name() {
+		return find_name;
+	}
+	public void setFind_name(String find_name) {
+		this.find_name = find_name;
+	}
+	
 	
 	
 	

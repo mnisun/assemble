@@ -70,14 +70,10 @@
 	</div>
 
 	<div>
-		<div>
-			댓글 작성자 : <input name="board_reply_writer" id="newReplyWriter" />
-			<%--type속성을 생략하면 기본값이 text --%>
-		</div>
 		<br>
 		<div>
 			댓글 내용 :
-			<textarea rows="5" cols="30" name="board_reply_cont" id="newReplyText"></textarea>
+			<textarea rows="5" cols="30" name="board_reply_cont" id="newReplyText" placeholder="댓글을 입력해주세요."></textarea>
 		</div>
 		<br>
 		<button id="replyAddBtn">댓글등록</button>
@@ -85,9 +81,8 @@
 
 	<br>
 	<hr>
-	[댓글 개수 :<span style="color: red; font-weight: bolder; font-size: 26px; 
-	border: 5px dotted orange; border-radius: 15px; padding: 3px; 
-	box-shadow: 3px 3px 3px gray;">${board.replycnt}</span> 개]
+	[댓글 개수 :<span style="color: red; font-weight: bolder; font-size: 26px;
+	border-radius: 15px; padding: 3px;">${board.replycnt}</span> 개]
 	<br>
 
 	<%--댓글 목록 --%>
@@ -95,8 +90,9 @@
 	
 	<script>
 	  $board_no=${b.board_no};
-	  
 	  getAllList();//댓글 목록함수를 호출
+	  
+	  
 	  
 	  //댓글 목록
 	  function getAllList(){
@@ -106,7 +102,8 @@
 		  
 		      $(data).each(function(){//each()함수에 의해서 li태그 단위로 댓글개수만큼 반복
 		    	  $str += "<li data-board_reply_rno='"+ this.board_reply_rno +"' class='replyLi'>"
-	    	  +this.board_reply_rno+" : <span class='com' style='color:blue;font-weight:bold;'>" + this.board_reply_cont +"</span>" + this.board_regdate
+		    	  +this.board_reply_writer  /*+this.board_reply_rno*/+" : <span class='com' style='color:blue;font-weight:bold;'>" 
+		    	  + this.board_reply_cont +"</span>" +"  "+ this.board_regdate
 	    	  +" <button>수정</button></li><br/>";
 		      });
 		      $('#replies').html($str);//html()함수로 문자와 태그를 함께 변경 적용
@@ -128,7 +125,7 @@
 				dataType : 'text',
 				data : JSON.stringify({
 					board_no : $board_no, //게시판 번호
-					board_reply_writer : $board_reply_writer, //댓글 작성자
+					//board_reply_writer : $board_reply_writer, //댓글 작성자
 					board_reply_cont : $board_reply_cont //댓글 내용
 				}),
 				success : function(data) {//비동기식으로 가져오는 것이 성공시 호출되는 콜백 함수,가져온 문자는 data 매개변수에 저장
@@ -206,5 +203,7 @@
 			 });
 		  });
 	</script>
+	
+
 </body>
 </html>

@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.freeboardWrite-table {
+	width:75%;
+	border-top: 1px solid #444444; /*게시판 목록 위에 줄*/
+	border-collapse: collapse;
+	margin-left: 13%;
+	position: relative;
+	
+}

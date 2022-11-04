@@ -53,6 +53,12 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	public void delFreeBoard(int board_no) {
 		this.freeboardDao.delFreeBoard(board_no);
 	}
+	
+	/*아래부터 검색관련*/
+	@Override
+	public int getRowCount(BoardVO b) {
+		return this.freeboardDao.getTotalCount(b);
+	} // 검색 전후 레코드 개수
 
 
 
