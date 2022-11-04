@@ -146,7 +146,6 @@ public class FreeBoardController {
 			ResponseEntity entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 		/*아래 두줄은 기존코드*/
-		
 		return new ModelAndView("redirect:/freeboard_list");
 	} // freeboard_write_ok()
 	

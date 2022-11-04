@@ -1,3 +1,4 @@
+<%@ include file="../include/board/header.jsp"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -7,6 +8,7 @@
 <meta charset="UTF-8">
 <title>게시판 내용보기 </title>
 <script src="../resources/js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/freeboard/freeboardCont.css">
 <style type="text/css">
   /*댓글 수정 화면 */
   #modDiv{
@@ -35,7 +37,7 @@
 	</tr>
 	
 	<tr>
-		<th>내용</th> <td>${b.board_cont}</td>
+		<th>내용</th> <td><pre>${b.board_cont}</pre></td>
 	</tr>
 	
 	<tr>
@@ -91,8 +93,6 @@
 	<script>
 	  $board_no=${b.board_no};
 	  getAllList();//댓글 목록함수를 호출
-	  
-	  
 	  
 	  //댓글 목록
 	  function getAllList(){
@@ -203,7 +203,7 @@
 			 });
 		  });
 	</script>
-	
 
 </body>
 </html>
+<jsp:include page="../include/footer.jsp" />

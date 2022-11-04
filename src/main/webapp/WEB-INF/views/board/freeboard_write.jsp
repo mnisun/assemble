@@ -16,23 +16,23 @@
 		<th colspan="2">자유게시판 입력</th>
 	</tr>
 	
-	<tr>
+	<!-- <tr>
 		<th>글쓴이</th>
 		<td><input name="board_writer" id="board_writer" size="14"/></td>
-	</tr>
+	</tr> -->
 	<!-- <tr>
 		<th>글쓴이</th>
 		<td><input name="board_writer" value="${users.user_id}" size="14"/></td>
 	</tr> -->
 	
 	<tr>
-		<th>글제목</th>
-		<td><input name="board_title" id="board_title" size="36"/></td>
+		<th>제목</th>
+		<td><input name="board_title" id="board_title" size="36" placeholder="제목을 입력해주세요."/></td>
 	</tr>
 	
 	<tr>
-		<th>글내용</th>
-		<td><textarea name="board_cont" id="board_cont" rows="10" cols="38"></textarea>
+		<th>내용</th>
+		<pre><td><textarea name="board_cont" id="board_cont" rows="10" cols="38" placeholder="내용을 입력해주세요."></textarea></td></pre>
 	</tr>
 	
 	<tr>
@@ -43,12 +43,10 @@
 	<tr>
 		<th colspan="27">
 		<input type="submit" value="등록"/>
-		<input type="reset" value="취소" onclick="$('#board_writer').focus();"/>
+		<input type="reset" value="취소" onclick="$('#board_title').focus();"/>
 		<input type="button" value="목록" onclick="location='freeboard_list?page=${page}';"/>
 	</tr>
 </table>
-
-	
 
 </form>
 </body>
