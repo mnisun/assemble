@@ -1,11 +1,25 @@
 @charset "UTF-8";
 
+.all-freeboard{
+	background-color: white;
+}
+h2{
+	margin-left: 13%;
+	margin-top: 5%;
+}
 .freeboardWrite-table {
 	width:75%;
-	border-top: 1px solid #444444; /*게시판 목록 위에 줄*/
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	border-bottom: none;
 	border-collapse: collapse;
 	margin-left: 13%;
+	margin-top: 2%;
+	margin-bottom: 2%;
 	position: relative;
+	background-color: white ;
+	
 }
 
 textarea {
@@ -15,8 +29,69 @@ textarea {
     resize: none;
   }
   
+.board-title-tr{
+	height: 2em;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+}
 #board_title{
-	width: 100%;
+	width:100%;
 	border: none;
     resize: none;
+    border-top: none;
+    border-left: none;
+	border-right: none;
 }
+.board-title{
+	width:10%
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+.board-title-td{
+	border-right: none;
+}
+
+.board-cont-td{
+	border-right: none;
+}
+.board-cont{
+	width:10%;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+#board_cont{
+	border-right: none;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+.board-image{
+	width:10%;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	height: 2em;
+}
+
+.board-image-td{
+	border-rithg: none;
+	border-right: none;
+	
+}
+
+.write-btn{
+	border-bottom: none;
+	margin-left: 78%;
+	margin-bottom: 2%;
+}
+.btn{
+	border-left: none;
+	border-right: none;
+}
+
+
+
+

@@ -23,35 +23,36 @@
   </style>
 </head>
 <body>
+<div class="freeboard_cont">
+<h2>자유게시판</h2><br>
+<hr>
 <table border="1">
+	
 	<tr>
-		<th colspan="2">게시물 내용</th>
+		<td class="board_title">${b.board_title}</td>
 	</tr>
 	
 	<tr>
-		<th>제목</th> <td>${b.board_title}</td>
+		<td class="board_writer">${b.board_writer} &nbsp;  |   &nbsp; ${b.board_date} </td>
+		<td class="board_hit">조회 ${b.board_hit}</td>
 	</tr>
 	
 	<tr>
-		<th>글쓴이</th> <td>${b.board_writer}</td>
+		<td colspan="3" class="board_cont"><br><pre>${b.board_cont}</pre></td>
 	</tr>
 	
-	<tr>
-		<th>내용</th> <td><pre>${b.board_cont}</pre></td>
-	</tr>
+	</table>
 	
+	<div  class="board_btn_tr">
 	<tr>
-		<th>조회수</th> <td>${b.board_hit}</td>
-	</tr>
-	
-	<tr>
-		<th colspan="2">
+		<th class="board_btn" colspan="2">
 			<input type="button" value="수정" onclick="location='freeboard_edit?board_no=${b.board_no}&page=${page}';"/>
 			<input type="button" value="삭제" onclick="location='freeboard_del?board_no=${b.board_no}&page=${page}';"/>
 			<input type="button" value="목록" onclick="location='freeboard_list?page=${page}';"/>
 		</th> 
 	</tr>
-	</table>
+	</div>
+	<br>
 	<hr>
 	<br>
 	
@@ -72,22 +73,23 @@
 	</div>
 
 	<div>
-		<br>
-		<div>
-			댓글 내용 :
+	<div class="cntreply">
+	[댓글<span style="color: black; font-weight: bolder; font-size: 26px;
+	border-radius: 15px; padding: 3px;">${board.replycnt}</span>]
+	<br>
+	</div>
+		<div class="replycont">
 			<textarea rows="5" cols="30" name="board_reply_cont" id="newReplyText" placeholder="댓글을 입력해주세요."></textarea>
 		</div>
-		<br>
-		<button id="replyAddBtn">댓글등록</button>
+		<button id="replyAddBtn">등록</button>
 	</div>
 
 	<br>
-	<hr>
-	[댓글 개수 :<span style="color: red; font-weight: bolder; font-size: 26px;
-	border-radius: 15px; padding: 3px;">${board.replycnt}</span> 개]
 	<br>
+	
 
 	<%--댓글 목록 --%>
+	<div class="replylist">
 	<ul id="replies"></ul>
 	
 	<script>
@@ -102,7 +104,7 @@
 		  
 		      $(data).each(function(){//each()함수에 의해서 li태그 단위로 댓글개수만큼 반복
 		    	  $str += "<li data-board_reply_rno='"+ this.board_reply_rno +"' class='replyLi'>"
-		    	  +this.board_reply_writer  /*+this.board_reply_rno*/+" : <span class='com' style='color:blue;font-weight:bold;'>" 
+		    	  +this.board_reply_writer  /*+this.board_reply_rno*/+"  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='com' style='color:black;'>" 
 		    	  + this.board_reply_cont +"</span>" +"  "+ this.board_regdate
 	    	  +" <button>수정</button></li><br/>";
 		      });
@@ -203,6 +205,8 @@
 			 });
 		  });
 	</script>
+	</div>
+	</div>
 
 </body>
 </html>

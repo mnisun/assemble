@@ -49,12 +49,10 @@
 	border-collapse : collapse;
 	height: 40px;
 }
-
 .freeboard-table tr td{
 	border-bottom : 1px solid #d3d3d3;
 	height: 35px;
 }
-
 .title-no{
 	width:5%;
 }

@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 게시물 수정 -->
 	<update id="fb_edit">
-      update board set board_writer=#{board_writer}, board_title=#{board_title},
+      update board set board_title=#{board_title},
       board_cont=#{board_cont} where board_no=#{board_no}
     </update>
     
