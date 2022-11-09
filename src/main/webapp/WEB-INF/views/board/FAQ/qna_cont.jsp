@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="freeboard_cont">
-<h2>자유게시판</h2><br>
+<h2>QnA</h2><br>
 <hr>
 <table border="1">
 	
@@ -46,9 +46,9 @@
 	<div  class="board_btn_tr">
 	<tr>
 		<th class="board_btn" colspan="2">
-			<input type="button" value="수정" onclick="location='freeboard_edit?board_no=${b.board_no}&page=${page}';"/>
-			<input type="button" value="삭제" onclick="location='freeboard_del?board_no=${b.board_no}&page=${page}';"/>
-			<input type="button" value="목록" onclick="location='freeboard_list?page=${page}';"/>
+			<input type="button" value="수정" onclick="location='qna_edit?board_no=${b.board_no}&page=${page}';"/>
+			<input type="button" value="삭제" onclick="location='qna_del?board_no=${b.board_no}&page=${page}';"/>
+			<input type="button" value="목록" onclick="location='qna_list?page=${page}';"/>
 		</th> 
 	</tr>
 	</div>

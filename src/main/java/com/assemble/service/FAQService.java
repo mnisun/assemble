@@ -14,5 +14,13 @@ public interface FAQService {
 
 	BoardVO getqnaCont(int board_no);
 
+	BoardVO getQnaBoardCont2(int board_no);
+
+	void editBoard(BoardVO eb);
+
+	void delqnaBoard(int board_no);
+
+
+
 
 }

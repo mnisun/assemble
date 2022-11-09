@@ -40,5 +40,15 @@ public class FAQDAOImpl implements FAQDAO {
 		return this.sqlSession.selectOne("qna_cont", board_no);
 	}
 
+	@Override
+	public void editBoard(BoardVO eb) {
+		this.sqlSession.update("qna_edit", eb);
+	}
+
+	@Override
+	public void delFreeBoard(int board_no) {
+		this.sqlSession.delete("qna_del", board_no);
+	}
+
 
 }

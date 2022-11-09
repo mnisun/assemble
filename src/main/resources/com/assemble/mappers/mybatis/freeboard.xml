@@ -86,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 검색전후 목록 -->
     </select>
     
-    <!--  qna시작 -->
+    <!--  ///////////////////////qna시작///////////////////////   -->
     	<insert id="qna_in" parameterType="board">
     	insert into board(board_no,board_title,board_writer,board_cont,board_date,board_type) 
 		values(board_seq.nextval,#{board_title, jdbcType=VARCHAR},#{board_writer, jdbcType=VARCHAR},#{board_cont, jdbcType=VARCHAR},sysdate,2)
@@ -106,6 +106,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	</where>
     <!-- 검색전후 목록 -->
     </select>
+    
+    <!-- 조회수 증가 -->
+	<update id="qna_hit" parameterType="int">
+		update board set board_hit = board_hit+1
+		where board_no = #{board_no}
+	</update>
     
     	<!-- 게시판 검색 전후 목록 -->
 	<select id="qna_list" resultType="board">
@@ -131,7 +137,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from board where board_no = #{board_no}
 	</select>
 	
-    
+		<!-- 게시물 수정 -->
+	<update id="qna_edit">
+      update board set board_title=#{board_title},
+      board_cont=#{board_cont} where board_no=#{board_no}
+    </update>
+	
+        <!-- 게시물 삭제 -->
+    <update id="qna_del">
+    	delete board where board_no=#{board_no}
+    </update>
 
 	
 	

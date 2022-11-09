@@ -169,7 +169,8 @@
 	</div>
 
 		<div class="writebtn">
-			<input class="btn" value="글쓰기" onclick="location='/qna_write?page=${page}';"/>
+			<input class="btn" type="button" value="질문하기" 
+			onclick="location='/qna_write?page=${page}';"/>
 		</div>
 
 

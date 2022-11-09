@@ -16,5 +16,9 @@ public interface FAQDAO {
 
 	BoardVO getQnaBoardCont(int board_no);
 
+	void editBoard(BoardVO eb);
+
+	void delFreeBoard(int board_no);
+
 	
 }

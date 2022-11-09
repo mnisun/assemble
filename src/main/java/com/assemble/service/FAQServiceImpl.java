@@ -33,9 +33,27 @@ public class FAQServiceImpl implements FAQService {
 	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public BoardVO getqnaCont(int board_no) {
-this.FAQDao.updateHit(board_no);
+		this.FAQDao.updateHit(board_no);
 		
 		return FAQDao.getQnaBoardCont(board_no);
 	}
+
+	@Override
+	public BoardVO getQnaBoardCont2(int board_no) {
+		return this.getqnaCont(board_no);
+	}
+
+	@Override
+	public void editBoard(BoardVO eb) {
+		this.FAQDao.editBoard(eb);
+	}
+
+	@Override
+	public void delqnaBoard(int board_no) {
+		this.FAQDao.delFreeBoard(board_no);
+
+	}
+
+
 
 }

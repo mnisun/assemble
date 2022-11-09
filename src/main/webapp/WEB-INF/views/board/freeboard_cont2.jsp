@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>게시판 내용보기 </title>
 <script src="../resources/js/jquery.js"></script>
-<link rel="stylesheet" type="text/css" href="/resources/css/freeboard/freeboardCont.css">
+<link rel="stylesheet" type="text/cs s" href="/resources/css/freeboard/freeboardCont.css">
 <style type="text/css">
   /*댓글 수정 화면 */
   #modDiv{

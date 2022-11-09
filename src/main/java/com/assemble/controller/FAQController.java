@@ -150,5 +150,37 @@ public class FAQController {
 			
 			return cm;
 		} // freeboard_cont()
+		
+		// 게시물 수정
+		@GetMapping("qna_edit")
+		public String qna_edit(Model em, int board_no, int page) {
+			
+			BoardVO eb = this.faqService.getQnaBoardCont2(board_no);
+			
+			em.addAttribute("b", eb);
+			em.addAttribute("page", page);
+			return "board/FAQ/qna_edit";
+		} // freeboard_edit()
+		
+		// 게시물 수정 완료
+		@RequestMapping("qna_edit_ok")
+		public ModelAndView freeboard_edit_ok(int board_no, int page, BoardVO eb) {
+			faqService.editBoard(eb);
+			
+			ModelAndView em = new ModelAndView();
+			em.setViewName("redirect:qna_cont");
+			em.addObject("board_no", eb.getBoard_no());
+			em.addObject("page", page);
+			return em;
+		} // freeboard_edit_ok()
+		
+		// 게시물 삭제
+		@RequestMapping("/qna_del")
+		public String qnaboard_del(int board_no, int page, RedirectAttributes rttr) {
+			this.faqService.delqnaBoard(board_no);
+			
+			rttr.addAttribute("msg", "SUCCESS");
+			return "redirect:/qna_list?page="+page;
+		}
 	
 }

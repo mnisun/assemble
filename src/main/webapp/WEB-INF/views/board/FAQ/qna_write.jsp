@@ -13,7 +13,7 @@
 <form method="post" onsubmit="return check();" >
 <div class="all-freeboard">
 
-				<h2>자유게시판 입력</h2>
+				<h2>질문하기</h2>
 				<br><hr>
 			<table class="freeboardWrite-table" border="1">
 
