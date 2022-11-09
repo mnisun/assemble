@@ -28,6 +28,8 @@ import com.assemble.service.FreeBoardService;
 import com.assemble.vo.BoardVO;
 import com.oreilly.servlet.MultipartRequest;
 
+import oracle.net.aso.l;
+
 @Controller
 public class FreeBoardController {
 	
@@ -163,6 +165,9 @@ public class FreeBoardController {
 		String find_name=request.getParameter("find_name"); // 검색어
 		String find_field=request.getParameter("find_field"); // 검색
 		// 필드
+		if(find_field ==null) {
+			find_field = "";
+		}
 		b.setFind_field(find_field);
 		b.setFind_name("%"+find_name+"%");
 		
@@ -173,21 +178,26 @@ public class FreeBoardController {
 		b.setStartrow((page-1)*20+1);
 		b.setEndrow(b.getStartrow()+limit-1);
 		
-		int totalCount=this.freeboardService.getRowCount(); // 총레코드 개수
 		List<BoardVO> blist=this.freeboardService.getBoardList(b);
-		
+		System.out.println(blist);
+		for (BoardVO list : blist) {
+			int list2 = list.getBoard_type();
+			System.out.println(list2);
+		}
 		/*페이징*/
-		int maxpage=(int)((double)totalCount/limit+0.95); // 총페이지수
+		int maxpage=(int)((double)listcount/limit+0.95); // 총페이지수
 		int startpage=(((int)((double)page/10+0.9))-1)*10+1; // 시작페이지
 		int endpage=maxpage; // 현재 페이지에 보여질 마지막 페이지
 		
 		if(endpage > startpage + 10-1) endpage=startpage+10-1;
 		
 		m.addAttribute("list",blist);// list키이름에 목록 저장
-		m.addAttribute("totalCount",totalCount);
+		m.addAttribute("listcount",listcount);
 		m.addAttribute("startpage",startpage);
 		m.addAttribute("endpage",endpage);
 		m.addAttribute("maxpage",maxpage);
+		m.addAttribute("find_name",find_name);   
+		m.addAttribute("find_field",find_field);
 		m.addAttribute("page",page);
 		
 		return "/board/freeboard_list";

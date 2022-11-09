@@ -15,6 +15,16 @@ select * from users
 alter table reply add constraint reply_board_no_fk
 foreign key(board_no) references board(board_no);
 
+alter table reply disable constraint reply_board_no_fk;
+
+delete board where board_no= 32
+
+ALTER TABLE reply
+ADD CONSTRAINT reply_board_no_fk
+  FOREIGN KEY (board_no)
+  REFERENCES board (board_no)
+  ON DELETE CASCADE;
+
 -- rno_seq시퀀스 생성
 create sequence rno_seq
 start with 1

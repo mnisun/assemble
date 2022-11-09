@@ -29,11 +29,6 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
 	}
 
 	@Override
-	public int getRowCount() {
-		return this.sqlSession.selectOne("fb_count");
-	}
-
-	@Override
 	public BoardVO getFreeBoardCont(int board_no) {
 		return this.sqlSession.selectOne("fb_cont", board_no);
 	}

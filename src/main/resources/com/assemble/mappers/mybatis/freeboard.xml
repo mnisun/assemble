@@ -17,12 +17,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from(select rowNum rNum, board_no, board_title, board_writer, board_date,
 		board_hit from (select * from board
 		<where>
-		<if test="find_field==''"></if>
+		<if test="find_field==''">
+		board_type=1
+		</if>
 		<if test="find_field=='board_title'">
-			board_title like #{find_name}
+			board_title like #{find_name} and board_type=1
 		</if>
 		<if test="find_field=='board_writer'">
-			board_writer like #{find_name}
+			board_writer like #{find_name} and board_type=1
 		</if>
 		</where>
 		order by board_no desc))
@@ -37,9 +39,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>-->
 	
 	<!-- 총레코드 개수 -->
-	<select id = "fb_count" resultType="int">
+	<!-- <select id = "fb_count" resultType="int">
 		select count(*) from board
-	</select>
+	</select> -->
 	
 	<!-- 게시물 내용보기 -->
 	<select id ="fb_cont" parameterType="int" resultType="board">
@@ -81,7 +83,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     			board_writer like #{find_name}
     		</if>
     	</where>
-    	
     <!-- 검색전후 목록 -->
     </select>
+    
+    <!--  qna시작 -->
+    	<insert id="qna_in" parameterType="board">
+    	insert into board(board_no,board_title,board_writer,board_cont,board_date,board_type) 
+		values(board_seq.nextval,#{board_title, jdbcType=VARCHAR},#{board_writer, jdbcType=VARCHAR},#{board_cont, jdbcType=VARCHAR},sysdate,2)
+	</insert>
+	
+	    <!-- 검색전후 레코드 개수 -->
+    <select id="qna_row" resultType="int">
+    	select count(board_no) from board
+    	<where>
+    		<if test="find_field==''"></if>
+    		<if test="find_field=='board_title'">
+    			board_title like #{find_name}
+    		</if>
+    		<if test="find_field=='board_writer'">
+    			board_writer like #{find_name}
+    		</if>
+    	</where>
+    <!-- 검색전후 목록 -->
+    </select>
+    
+    	<!-- 게시판 검색 전후 목록 -->
+	<select id="qna_list" resultType="board">
+		select * from(select rowNum rNum, board_no, board_title, board_writer, board_date,
+		board_hit from (select * from board
+		<where>
+		<if test="find_field==''">
+		board_type=2
+		</if>
+		<if test="find_field=='board_title'">
+			board_title like #{find_name} and board_type=2
+		</if>
+		<if test="find_field=='board_writer'">
+			board_writer like #{find_name} and board_type=2
+		</if>
+		</where>
+		order by board_no desc))
+		where rNum &gt; = #{startrow} and rNum &lt; = #{endrow}
+	</select>
+    
+    	<!-- 게시물 내용보기 -->
+	<select id ="qna_cont" parameterType="int" resultType="board">
+		select * from board where board_no = #{board_no}
+	</select>
+	
+    
+
+	
+	
 </mapper>

@@ -10,8 +10,6 @@ public interface FreeBoardDAO {
 
 	List<BoardVO> getBoardList(BoardVO b);
 
-	int getRowCount();
-
 	BoardVO getFreeBoardCont(int board_no);
 
 	void updateHit(int board_no);

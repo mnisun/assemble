@@ -9,12 +9,27 @@ create table board(
     board_replycnt number(10), -- 
     board_category varchar2(10)
 );
+
+insert into board(board_no,board_title,board_writer,board_cont,board_date,board_image,board_type) 
+		values(board_seq.nextval,'제목','글쓴이','내용',sysdate,null,2)
+        
+        insert into board(board_no,board_title,board_writer,board_cont,board_date,board_image,board_type) 
+		values(board_seq.nextval,'아아','아아','내용',sysdate,null,2)
+        
 create sequence board_seq
 start with 1
 increment by 1
 nocache;
 commit;
 select * from board;
+
+select * from(select rowNum rNum, board_no, board_title, board_writer, board_date, board_hit from (select * from board where board_type=2 order by board_no));
+
+
+commit
+
+
+
 
 select board_seq.nextval from dual;
 

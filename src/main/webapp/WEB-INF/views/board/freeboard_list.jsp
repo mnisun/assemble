@@ -17,7 +17,7 @@
 		<%-- 게시판 리스트 --%>
 		<ul>
 			<div class="board-list">
-				<a href="#"><li>자유게시판</li></a> <a href="../FAQ/FAQ.jsp"><li>FAQ
+				<a href="./freeboard_list"><li>자유게시판</li></a> <a href="./qna_list"><li>FAQ
 						& QnA</li></a> <a href="../recommend/recommend.jsp"><li>추천게시판</li></a> <a
 					href="../notice/notice.jsp"><li>공지사항</li></a>
 			</div>
@@ -32,8 +32,19 @@
 			등에 관한 법률 제74조에 의거<br> <strong>1년이하의 징역 또는 1천만원 이하의 벌금에
 				처해질수 있습니다.</strong>
 		</div>
-
-		<%--자유게시판 시작 --%>
+			<%--검색폼 --%>
+			<div id="bFind_wrap">
+				<select name="find_field">
+					<option value="board_title"
+						<c:if test="${find_field == 'board_title'}">
+   ${'selected'}</c:if>>제목</option>
+					<option value="board_writer"
+						<c:if test="${find_field == 'board_writer'}">
+    ${'selected'}</c:if>>작성자</option>
+				</select> <input name="find_name" id="find_name" size="14"
+					value="${find_name}" /> <input type="submit" value="검색" />
+			</div>
+			<%--자유게시판 시작 --%>
 		<tr>
 			<th class="title-no">NO</th>
 			<th class="title-title">제목</th>
@@ -48,7 +59,7 @@
 					<td class="cont-num">${board.board_no}</td>
 					<td class="cont-cont"><a href="/freeboard_cont?board_no=${board.board_no}&page=${page}">${board.board_title}
 					<c:if test="${b.replycnt != 0}">
-				    <%--3칸의 빈공백 --%> (${b.replycnt})
+				    <%--3칸의 빈공백 --%> ${b.replycnt}
 				   </c:if></a></td>
 				    <td class="cont-writer">${board.board_writer}</td>
 					<%--<td class="cont-writer">${board.board_writer}</td> --%>
@@ -157,24 +168,11 @@
 	</script>
 	
 <!-- -------------------------------------------------------------------------- -->
-	<%--검색폼 --%>
-	<div id="bFind_wrap">
-		<select name="find_field">
-			<option value="board_title"
-				<c:if test="${find_field == 'board_title'}">
-   ${'selected'}</c:if>>제목</option>
-			<option value="board_writer"
-				<c:if test="${find_field == 'board_writer'}">
-    ${'selected'}</c:if>>작성자</option>
-		</select> <input name="find_name" id="find_name" size="14" value="${find_name}" />
-		<input type="submit" value="검색" />
-	</div>
+	
 	
 </div>
 
 </form>
-
-
 
 </body>
 </html>

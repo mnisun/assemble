@@ -1,4 +1,4 @@
-<%@ include file="../include/board/header.jsp"%>
+<%@ include file="../../include/board/header.jsp"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/freeboard/freeboardWrite.css">
 </head>
 <body>
-<form method="post" onsubmit="return check();" enctype="multipart/form-data">
+<form method="post" onsubmit="return check();" >
 <div class="all-freeboard">
 
 				<h2>자유게시판 입력</h2>
@@ -38,10 +38,8 @@
 							cols="38" placeholder="내용을 입력해주세요."></textarea></td>
 				</tr>
 
-				<tr>
-					<th class="board-image">파일첨부</th>
-					<td class="board-image-td"><input type="file" name="board_image" /></td>
-				</tr>
+
+
 				
 			</table>
 			<div class="write-btn">
@@ -49,7 +47,7 @@
 					<th colspan="27"><input type="submit" value="등록" /> <input
 						type="reset" value="취소" onclick="$('#board_title').focus();" /> <input
 						type="button" value="목록"
-						onclick="location='freeboard_list?page=${page}';" />
+						onclick="location='qna_list?page=${page}';" />
 				</tr>
 			</div>
 
@@ -58,4 +56,4 @@
 </form>
 </body>
 </html>
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../../include/footer.jsp" />

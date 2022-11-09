@@ -8,7 +8,6 @@
 	overflow: hidden;
 	background-color: #f0ffff ;
 	width:100%;
-	
 }
 
 .freeboard-table {
@@ -67,6 +66,7 @@
 }
 .title-viewcon{
 	width:10%;
+	
 }
 
 .cont-num{
@@ -137,7 +137,7 @@ a{
 	font-size: 15px;
 }
 
-/*카테고리 셀렉트*/
+/*카테고리 셀렉트
 select {
 	width: 200px;
 	padding: .8em .5em;
@@ -148,4 +148,15 @@ select {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
+}*/
+
+/*검색폼*/
+#bFind_wrap{
+	margin-left: 69%;
+	padding-bottom: 1%;
+}
+
+select{
+	width: 5em;
+	height: 1.5em;
 }

@@ -26,11 +26,6 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return this.freeboardDao.getBoardList(b);
 	}
 
-	@Override
-	public int getRowCount() {
-		return this.freeboardDao.getRowCount();
-	}
-	
 	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public BoardVO getFreeBoardCont(int board_no) {
@@ -59,8 +54,5 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	public int getRowCount(BoardVO b) {
 		return this.freeboardDao.getTotalCount(b);
 	} // 검색 전후 레코드 개수
-
-
-
 
 }
